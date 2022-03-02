@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/header.scss';
+import Menu from './menu';
 
 const Header = () => {
+	const [ toggle, setToggle ] = useState(false);
+	const handleToggle = () => setToggle(!toggle);
+
 	return (
 		<nav>
 			<h2 className="menu">Menu</h2>
@@ -29,12 +33,18 @@ const Header = () => {
 			</div>
 			<div className="navbar-right">
 				<ul>
-					<li className="navbar-email">email@example.com</li>
+					<li
+						onClick={handleToggle} 
+						className="navbar-email"
+					>
+						email@example.com
+					</li>
 					<li className="navbar-shopping-cart">
 						<div>2</div>
 					</li>
 				</ul>
 			</div>
+			{ toggle && <Menu />}
 		</nav>
 	);
 }
